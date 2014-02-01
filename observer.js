@@ -1,6 +1,13 @@
-var observer = (function() {
+/* Module of prototypes for implementing the observer pattern. 
+ * 
+ * Depends on underscore.js
+ *
+ */
 
-    // Define observable prototype
+var observer = (function() { // module namespace
+
+    // Define 'observable' prototype. 
+    // 'observable' provides a simple subscribeable message channel.
     var observable = {
         
         init: function init(sender) {
@@ -36,6 +43,11 @@ var observer = (function() {
 
 
     // Define "observableField" prototype (inherits from "observable")
+    /* 'observableField' allows us to create an object which stores a 
+     * value, and notifies its subscribers when that value is changed. 
+     * This allows us to create javascript objects with observable
+     * properties.
+     */
     var observableField = _.extend(Object.create(observable), {
            
         setValidator: function(func) {
@@ -62,6 +74,11 @@ var observer = (function() {
     // End "observableField" prototype definition
 
     // Define Computed observable prototype (inherits from observable)
+    /* A 'computed' object has a similar interface and function to
+     * 'observableField', but its value is calculated from the value of
+     * other observableField objects. When those objects change, the
+     * value of 'computed' is automatically recalculated 
+     */
     var computed = _.extend(Object.create(observable), {
 
         configure: function(dependencies, func) {
@@ -91,7 +108,8 @@ var observer = (function() {
     });
 
     // End definition of "computed"
-
+    
+    // Testing function
     function test() {
         
         var obs, source, obf, obf2, obf3, dataOb, validator, new_val, dep1, dep2, deps, alg, comp;
