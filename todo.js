@@ -500,7 +500,7 @@ var TodoApp = (function() {
         
     }());    
     
-    function run(container) {
+    function makeNew(container) {
         var listmodel = Object.create(model.taskList).init(); // no use for this yet
         var listview = Object.create(view.todoListView).init(listmodel);
         var listcontroller = Object.create(controller.todoListController).init(listview, listmodel);
@@ -532,11 +532,6 @@ var TodoApp = (function() {
         
     }
     
-    return {
-        model: model,
-        view: view,
-        controller: controller,
-        run: run,
-    };
+    return {makeNew: makeNew}
     
 }());
