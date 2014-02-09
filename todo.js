@@ -501,7 +501,7 @@ var TodoApp = (function() {
     }());    
     
     function makeNew(container) {
-        var listmodel = Object.create(model.taskList).init(); // no use for this yet
+        var listmodel = Object.create(model.taskList).init();
         var listview = Object.create(view.todoListView).init(listmodel);
         var listcontroller = Object.create(controller.todoListController).init(listview, listmodel);
             
