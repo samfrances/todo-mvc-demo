@@ -379,8 +379,7 @@ var TodoApp = (function() {
         
         var addBoxView = {
             
-            init: function(listmodel) {
-                this._model = listmodel;
+            init: function() {
                 
                 // events for controller to watch
                 this.events = {}
@@ -505,7 +504,7 @@ var TodoApp = (function() {
         var listview = Object.create(view.todoListView).init(listmodel);
         var listcontroller = Object.create(controller.todoListController).init(listview, listmodel);
             
-        var addview = Object.create(view.addBoxView).init(listmodel);
+        var addview = Object.create(view.addBoxView).init();
         var addcontroller = Object.create(controller.addBoxController).init(addview, listmodel);
                    
         $(addview.getEl()).appendTo(container);
