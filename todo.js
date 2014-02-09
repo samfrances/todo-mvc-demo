@@ -311,7 +311,7 @@ var TodoApp = (function() {
             
         };
         
-        var todoListView = { // CURRENTLY WORKING ON
+        var todoListView = { 
             init: function(model) {
                 this._model = model
                 
@@ -349,10 +349,6 @@ var TodoApp = (function() {
                 });
                 
                 return this;
-            },
-            
-            _findSubview: function(taskmodel) {
-                
             },
             
             _addSubview: function(taskmodel) {
