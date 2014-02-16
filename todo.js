@@ -39,7 +39,7 @@ var TodoApp = (function() {
                 /* The following event is not used by the view, which has 
                 subviews which observe their corresponding task models.
                 This event is meant to be exposed as part of the external
-                for the app */
+                interface for the app */
                 this.events.taskChanged = Object.create(observable).init(this);
                 
                 return this;
