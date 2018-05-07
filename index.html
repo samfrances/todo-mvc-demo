@@ -17,70 +17,70 @@
                 margin-bottom:10px;
             }
         </style>
-        <script src="http://underscorejs.org/underscore-min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="https://underscorejs.org/underscore-min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script src="observer.js"></script>
         <script src="todo.js"></script>
     </head>
     <body>
-        
+
         <div><input type="file" id="file1"></div>
         <br>
         <button id="savebutton">Save</button>
         <br><br>
-        
+
         <script>
-        
+
             $('#file1').on("change", function(e) {
                 var file = e.target.files[0];
-                
+
                 var reader = new FileReader();
-                
+
                 reader.onload = function(e) {
                     app.model.clear()
                     app.loadJSON(e.target.result);
                 };
-                
+
                 reader.readAsText(file)
             });
-            
+
             $('#savebutton').on("click", function(e) {
                 var a = document.createElement('a');
                 a.setAttribute('download', 'tasks.json');
-                
+
                 var blob = new Blob([app.dumpJSON()], {type: "text/json"});
                 var url = URL.createObjectURL(blob);
-                
+
                 a.href = url;
                 a.style.display = 'none';
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
             });
-            
-        
+
+
         </script>
-        
+
         <div id="con"></div>
         <br>
-        
+
         <script>
-            
+
             var app = TodoApp.makeNew($('#con')).load([
                 {text: "Wash the dishes", complete: true, priority: 6},
                 "Bake the bread",
                 {text: "Make the bed", priority: 2},
                 {text: "Eat the bread", complete: true},
             ]);
-        
+
         </script>
-        
-        
+
+
         <div>Completed: <span id="counter"></span></div> <!-- example of plugability -->
         <script>
-        
+
             //example of plugability
-            
+
             function counter(id) {
                 var el = $('#' + id);
                 el.text(app.model.countComplete());
@@ -93,8 +93,8 @@
                 app.model.events.taskRemoved.subscribe(callback);
             }
             counter('counter');
-            
+
         </script>
-        
+
     </body>
-</html> 
+</html>
